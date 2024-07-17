@@ -86,6 +86,9 @@ module Rpush
           end
 
           def android_notification
+            return {}
+            # currently our Android App is not able to deserialize this data
+            # if we omit it, the notification will display, otherwise it will not
             json = notification&.slice(*ANDROID_NOTIFICATION_KEYS) || {}
             json['notification_priority'] = priority_for_notification if priority
             json['sound'] = sound if sound
